@@ -28,6 +28,7 @@ android {
         }
         val mapsApiKey = localProperties.getProperty("MAPS_API_KEY") ?: ""
         buildConfigField("String", "MAPS_API_KEY", "\"$mapsApiKey\"")
+        manifestPlaceholders["MAPS_API_KEY"] = mapsApiKey
 
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -94,8 +95,6 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
-    implementation(libs.javapoet)
-
     // Hilt navigation support for Compose
     implementation(libs.androidx.hilt.navigation.compose)
 
@@ -131,10 +130,4 @@ dependencies {
         }
     }
     testImplementation(kotlin("test"))
-}
-
-configurations.ksp {
-    resolutionStrategy {
-        force("com.squareup:javapoet:1.13.0")
-    }
 }

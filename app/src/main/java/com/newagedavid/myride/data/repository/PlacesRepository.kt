@@ -4,6 +4,7 @@ import android.content.Context
 import android.location.Geocoder
 import android.util.Log
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.tasks.Tasks
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.AutocompletePrediction
 import com.google.android.libraries.places.api.model.AutocompleteSessionToken
@@ -62,21 +63,25 @@ class PlacesRepository(context: Context) {
     }
 
 
-    suspend fun getLatLngFromAddress(address: String, context: Context, apiKey: String): LatLng? {
+    //fetch the address of a place given its ID.
+    suspend fun getAddressFromPlaceId(placeId: String, context: Context): String {
         return withContext(Dispatchers.IO) {
             try {
-                val geocoder = Geocoder(context)
-                val results = geocoder.getFromLocationName(address, 1)
-                if (!results.isNullOrEmpty()) {
-                    val location = results[0]
-                    LatLng(location.latitude, location.longitude)
-                } else null
+                val placesClient = Places.createClient(context)
+                val request = FetchPlaceRequest.builder(
+                    placeId,
+                    listOf(Place.Field.ADDRESS)
+                ).build()
+
+                val response = Tasks.await(placesClient.fetchPlace(request))
+                response.place.address ?: ""
             } catch (e: Exception) {
-                e.printStackTrace()
-                null
+                Log.e("PlacesRepo", "Error fetching address from Place ID", e)
+                ""
             }
         }
     }
+
 
 }
 

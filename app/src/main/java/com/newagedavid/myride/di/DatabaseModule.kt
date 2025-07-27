@@ -21,7 +21,7 @@ object DatabaseModule {
     @Singleton
     fun provideDatabase(app: Application): AppDatabase =
         Room.databaseBuilder(app, AppDatabase::class.java, "my_ride_db")
-            .fallbackToDestructiveMigration()
+            .fallbackToDestructiveMigration(false)
             .build()
 
     @Provides

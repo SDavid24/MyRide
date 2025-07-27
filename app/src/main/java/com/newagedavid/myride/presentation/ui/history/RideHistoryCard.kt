@@ -36,7 +36,9 @@ fun RideHistoryCard(ride: RideHistory) {
             AnnotatedText("Plate: ", ride.plateNumber)
             Spacer(modifier = Modifier.height(5.dp))
             AnnotatedText("Fare: ", "$${"%.2f".format(ride.fare)}")
-            AnnotatedText("Timestamp: ",  "${DateFormat.getDateTimeInstance().format(Date(ride.timestamp))}")
+            AnnotatedText("Timestamp: ",
+                DateFormat.getDateTimeInstance().format(Date(ride.timestamp))
+            )
 
         }
     }

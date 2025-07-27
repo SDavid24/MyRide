@@ -6,7 +6,7 @@ fun simulateTrafficLevel(): Double {
     return listOf(1.0, 1.2, 1.5).random()
 }
 
-fun minutesAway(): Int{
+fun generateRandomMinutesAway(): Int{
     return (5..20).random()}
 
 fun isCurrentTimePeakHour(): Boolean {
