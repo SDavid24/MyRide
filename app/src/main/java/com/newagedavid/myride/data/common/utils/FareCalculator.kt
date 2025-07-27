@@ -3,7 +3,7 @@ package com.newagedavid.myride.data.common.utils
 import com.newagedavid.myride.data.common.model.FareEstimate
 import javax.inject.Inject
 
-class FareCalculator @Inject constructor() {
+class FareCalculator {
 
     private val baseFare = 2.5
     private val perKmRate = 1.0

@@ -2,6 +2,8 @@ package com.newagedavid.myride.presentation.ui.home
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -33,12 +35,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.newagedavid.myride.BuildConfig
-import com.newagedavid.myride.data.common.utils.isCurrentTimePeakHour
 import com.newagedavid.myride.data.common.utils.generateRandomMinutesAway
+import com.newagedavid.myride.data.common.utils.isCurrentTimePeakHour
 import com.newagedavid.myride.data.common.utils.simulateTrafficLevel
 import com.newagedavid.myride.data.local.entity.RideHistory
 import com.newagedavid.myride.presentation.ui.history.AnnotatedText
@@ -48,6 +49,7 @@ import com.newagedavid.myride.presentation.viewmodel.MapViewModel
 import com.newagedavid.myride.presentation.viewmodel.RideViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -57,8 +59,8 @@ fun HomeScreen() {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
 
-    val mapViewModel: MapViewModel = hiltViewModel()
-    val rideViewModel: RideViewModel = hiltViewModel()
+    val mapViewModel: MapViewModel = koinViewModel()
+    val rideViewModel: RideViewModel = koinViewModel()
 
     val pickupLocation by mapViewModel.pickupLocation.collectAsState()
     val destinationLocation by mapViewModel.destinationLocation.collectAsState()
@@ -260,11 +262,14 @@ fun HomeScreen() {
                             showBookingDialog = true
 
                         } else {
-                            Toast.makeText(
-                                context,
-                                "Please select both pickup and destination",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            Handler(Looper.getMainLooper()).post {
+                                Toast.makeText(
+                                    context,
+                                    "Please select both pickup and destination",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+
                         }
                     }
 

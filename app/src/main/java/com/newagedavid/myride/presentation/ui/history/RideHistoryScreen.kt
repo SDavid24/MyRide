@@ -28,18 +28,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.nestedscroll.NestedScrollSource.Companion.SideEffect
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.newagedavid.myride.presentation.viewmodel.RideHistoryViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun RideHistoryScreen(
     navController: NavHostController,
-    viewModel: RideHistoryViewModel = hiltViewModel()
+    viewModel: RideHistoryViewModel = koinViewModel()
 ) {
     val rideHistory by viewModel.rides.collectAsState()
     var showDialog by remember { mutableStateOf(false) }

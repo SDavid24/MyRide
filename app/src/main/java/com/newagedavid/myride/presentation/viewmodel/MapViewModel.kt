@@ -10,13 +10,11 @@ import com.newagedavid.myride.data.repository.DirectionsRepository
 import com.newagedavid.myride.data.repository.PlacesRepository
 import com.newagedavid.myride.presentation.ui.utils.getAddressFromLocation
 import com.newagedavid.myride.presentation.ui.utils.getCurrentLocation
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
-@HiltViewModel
-class MapViewModel @Inject constructor(
+
+class MapViewModel (
     private val directionsRepository: DirectionsRepository
 ) : ViewModel() {
 

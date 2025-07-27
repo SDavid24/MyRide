@@ -5,18 +5,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.android.libraries.places.api.model.AutocompletePrediction
 import com.newagedavid.myride.data.repository.PlacesRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 /**
  * ViewModel for the RideInputSheet.
  * Handles business logic and updates UI state.
  */
-@HiltViewModel
-class RideInputViewModel @Inject constructor(
+class RideInputViewModel (
     private val placesRepository: PlacesRepository
 ) : ViewModel() {
 

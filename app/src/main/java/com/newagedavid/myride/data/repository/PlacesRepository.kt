@@ -12,6 +12,7 @@ import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.FetchPlaceRequest
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest
 import com.google.android.libraries.places.api.net.PlacesClient
+import com.newagedavid.myride.BuildConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.tasks.await
@@ -47,8 +48,6 @@ class PlacesRepository(context: Context) {
 
     suspend fun getLatLngFromPlaceId(placeId: String, context: Context): LatLng? {
         return suspendCancellableCoroutine { continuation ->
-            val placesClient = Places.createClient(context)
-
             val request = FetchPlaceRequest.builder(placeId, listOf(Place.Field.LAT_LNG)).build()
             placesClient.fetchPlace(request)
                 .addOnSuccessListener { response ->
@@ -67,7 +66,6 @@ class PlacesRepository(context: Context) {
     suspend fun getAddressFromPlaceId(placeId: String, context: Context): String {
         return withContext(Dispatchers.IO) {
             try {
-                val placesClient = Places.createClient(context)
                 val request = FetchPlaceRequest.builder(
                     placeId,
                     listOf(Place.Field.ADDRESS)

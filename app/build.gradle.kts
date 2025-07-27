@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.hilt)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -72,6 +72,8 @@ dependencies {
     implementation(libs.play.services.location)
     implementation(libs.androidx.room.external.antlr)
     implementation(libs.core.ktx)
+    implementation(libs.firebase.crashlytics.buildtools)
+    implementation(libs.androidx.navigation.compose.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -91,21 +93,18 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
 
-    // Dagger Hilt
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler)
+    // Koin dependencies
+    implementation(libs.koin.android)
+    implementation(libs.koin.core)
+    implementation(libs.koin.androidx.compose)
 
-    // Hilt navigation support for Compose
-    implementation(libs.androidx.hilt.navigation.compose)
-
-    // Retrofit
-    implementation(libs.retrofit)
-    implementation(libs.okhttp)
-    implementation(libs.okhttp.logging)
-
-    implementation(libs.converter.gson)
-
-
+    //ktor
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.okhttp)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(libs.ktor.client.logging)
+    implementation(libs.kotlinx.serialization.json)
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.core)

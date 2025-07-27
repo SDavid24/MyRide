@@ -5,15 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.newagedavid.myride.data.local.dao.RideHistoryDao
 import com.newagedavid.myride.data.local.entity.RideHistory
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class RideHistoryViewModel @Inject constructor(
+class RideHistoryViewModel (
     private val dao: RideHistoryDao
 ) : ViewModel() {
 

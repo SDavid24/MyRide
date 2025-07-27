@@ -10,17 +10,14 @@ import com.newagedavid.myride.data.common.model.RideConfirmation
 import com.newagedavid.myride.data.common.utils.DistanceUtils
 import com.newagedavid.myride.data.local.dao.RideHistoryDao
 import com.newagedavid.myride.data.local.entity.RideHistory
-import com.newagedavid.myride.data.repository.RideRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.newagedavid.myride.data.repository.IRideRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class RideViewModel @Inject constructor(
-    private val rideRepository: RideRepository,
+class RideViewModel (
+    private val rideRepository: IRideRepository,
     private val rideHistoryDao: RideHistoryDao
 ) : ViewModel() {
 

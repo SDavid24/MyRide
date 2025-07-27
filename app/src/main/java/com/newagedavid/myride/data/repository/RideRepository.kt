@@ -7,11 +7,8 @@ import com.newagedavid.myride.data.common.model.RideConfirmation
 import com.newagedavid.myride.data.common.utils.FareCalculator
 import com.newagedavid.myride.data.local.dao.RideHistoryDao
 import com.newagedavid.myride.data.local.entity.RideHistory
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class RideRepository @Inject constructor(
+class RideRepository (
     private val fareCalculator: FareCalculator,
     private val rideHistoryDao: RideHistoryDao
 ) : IRideRepository {

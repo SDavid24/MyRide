@@ -9,17 +9,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
 import com.google.android.libraries.places.api.Places
-import com.newagedavid.myride.data.local.dao.RideHistoryDao
 import com.newagedavid.myride.presentation.navigation.AppNavigation
 import com.newagedavid.myride.presentation.ui.theme.MyRideTheme
-import dagger.hilt.android.AndroidEntryPoint
 import java.util.Locale
-import javax.inject.Inject
 
-@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @Inject
-    lateinit var dao: RideHistoryDao  // Hilt will inject this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
