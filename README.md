@@ -89,7 +89,7 @@ From Terminal (device/emulator required):
 com.newagedavid.myride/
 │
 ├── data/               # Local data layer (Room DB, DAO, entities) \n
-├── di/                 # Hilt dependency injection modules
+├── di/                 # Koin dependency injection modules
 ├── domain/             # Business logic & data models
 ├── repository/         # Repository abstraction + impl
 ├── ui/                 # Composable UI and screens
@@ -105,7 +105,7 @@ com.newagedavid.myride/
 - **Kotlin**
 - **Jetpack Compose** (UI)
 - **Room** (local persistence)
-- **Hilt** (Dependency Injection)
+- **Koin** (Dependency Injection)
 - **MVVM** architecture
 - **Google Places API**
 - **JUnit** + **MockK** (unit tests)
